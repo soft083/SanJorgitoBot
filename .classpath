@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/user_lib"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.websphere.appserver.api.jaxrs_1.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.websphere.appserver.api.json_1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.websphere.appserver.api.servlet_1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.websphere.appserver.spi.jsp_1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.websphere.appserver.spi.servlet_1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.websphere.appserver.thirdparty.jaxrs_1.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.ws.javaee.jaxrs.1.1_1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.ws.javaee.jsp.2.2_1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.ws.javaee.jsp.tld.2.2_1.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.ws.javaee.servlet.3.0_1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.ws.javaee.transaction.1.1_1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/com.ibm.ws.jaxrs.api_1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/fluent-hc-4.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/httpclient-4.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/httpclient-cache-4.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/httpclient-win-4.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/httpcore-4.4.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/httpmime-4.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/jar_files.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/jna-4.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/jna-platform-4.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/joda-time-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/miticommons-0.0.1-20190704.104339-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Soft/Downloads/botSdm/botSdm (1)/telegrambots-3.6.1-jar-with-dependencies.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
