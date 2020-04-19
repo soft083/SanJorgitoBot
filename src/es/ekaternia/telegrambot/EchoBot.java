@@ -22,27 +22,28 @@ public class EchoBot extends TelegramLongPollingBot {
 		
 		
 		// Se obtiene el mensaje escrito por el usuario
-		final String messageTextReceived = update.getMessage().getText();
+		//final String messageTextReceived = update.getMessage().getText().toLowerCase();
 
 		
 		// Se obtiene el id de chat del usuario
-		final long chatId = update.getMessage().getChatId();
+		final long chat_id = update.getMessage().getChatId();
 
 		// Se crea un objeto mensaje
-		SendMessage message = new SendMessage().setChatId(chatId).setText(messageTextReceived);
+		SendMessage message = new SendMessage().setChatId(chat_id).setText("");
+		SendMessage message2 = new SendMessage().setChatId(chat_id).setText("");
 		
-		try {
+		/*try {
 			// Se envía el mensaje
 			execute(message);
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
         System.out.println((new StringBuilder(String.valueOf(update.getMessage().getFrom().getFirstName()))).append(": ").append(update.getMessage().getText()).toString());
         if(update.hasMessage() && update.getMessage().hasText())
         {
-            long chat_id = update.getMessage().getChatId().longValue();
-            String message_text = update.getMessage().getText();
+         //   long chat_id = update.getMessage().getChatId().longValue();
+            String message_text = update.getMessage().getText().toLowerCase();
             if(message_text.equals("/start"))
             {
             	System.out.println(Long.valueOf(chat_id));
@@ -55,7 +56,7 @@ public class EchoBot extends TelegramLongPollingBot {
                 {
                     e.printStackTrace();
                 }
-            } else if(message_text.equals("/Alex"))
+            } else if(message_text.equals("/alex"))
                 {
                     message = (new SendMessage()).setChatId(Long.valueOf(chat_id)).setText("Álex, eres el más guapo de todos");
                     try
@@ -64,16 +65,6 @@ public class EchoBot extends TelegramLongPollingBot {
                     }
                     catch(TelegramApiException e)
                     {
-                        e.printStackTrace();
-                    }
-                }else if (message_text.equals("/imagen")) {
-                    SendPhoto messagePhoto = new SendPhoto()
-                            .setChatId(chat_id)
-                            .setPhoto("https://pbs.twimg.com/profile_images/513094919246737408/Dp_FWNa1_400x400.jpeg")
-                            .setCaption("Photo");
-                    try {
-                        sendPhoto(messagePhoto); // Call method to send the photo
-                    } catch (TelegramApiException e) {
                         e.printStackTrace();
                     }
                 } else if(message_text.startsWith("/musica")){
@@ -96,59 +87,6 @@ public class EchoBot extends TelegramLongPollingBot {
                     {
                         e.printStackTrace();
                     }
-                }else if (message_text.equals("/markup")) {
-                    message = new SendMessage() // Create a message object object
-                            .setChatId(chat_id)
-                            .setText("Here is your keyboard");
-                    // Create ReplyKeyboardMarkup object
-                    ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
-                    // Create the keyboard (list of keyboard rows)
-                    List<KeyboardRow> keyboard = new ArrayList<>();
-                    // Create a keyboard row
-                    KeyboardRow row = new KeyboardRow();
-                    // Set each button, you can also use KeyboardButton objects if you need something else than text
-                    row.add(0,"POCOYO 1");
-                    row.add(1,"Mostrar Torre");
-                    row.add(2,"Row 1 Button 3");
-                  
-                    // Add the first row to the keyboard
-                    keyboard.add(row);
-                    // Create another keyboard row
-                    row = new KeyboardRow();
-                    // Set each button for the second line
-                    row.add("Row 2 Button 1");
-                    row.add("Row 2 Button 2");
-                    row.add("Row 2 Button 3");
-                    // Add the second row to the keyboard
-                    keyboard.add(row);
-                    // Set the keyboard to the markup
-                    keyboardMarkup.setKeyboard(keyboard);
-                    // Add it to the message
-                    message.setReplyMarkup(keyboardMarkup);
-                    
-                    
-                    try {
-                        execute(message); // Sending our message object to user
-                    } catch (TelegramApiException e) {
-                        e.printStackTrace();
-                    }
-                } else if (message_text.equals("/quitar")) {
-                    //message = new SendMessage() // Create a message object object
-                        //    .setChatId(chat_id)
-                         //   .setText("Here is your keyboard");
-                    // Create ReplyKeyboardMarkup object
-                    ReplyKeyboardRemove keyboardMarkup = new ReplyKeyboardRemove();
-                    // Create the keyboard (list of keyboard rows)
-
-                    // Add it to the message
-                    message.setReplyMarkup(keyboardMarkup);
-                    
-                    
-                    try {
-                        execute(message); // Sending our message object to user
-                    } catch (TelegramApiException e) {
-                        e.printStackTrace();
-                    }
                 }else if(message_text.startsWith("/resuelvemoji"))
                 {
 
@@ -161,7 +99,7 @@ public class EchoBot extends TelegramLongPollingBot {
                     {
                         e.printStackTrace();
                     }
-                }else if (message_text.startsWith("/visualizarEmojis")) {
+                }else if (message_text.startsWith("/visualizaremojis")) {
                 	String Foto ="https://img.europapress.es/fotoweb/fotonoticia_20140927141411-652389_800.jpg";
                     SendPhoto messagePhoto = new SendPhoto()
                             .setChatId(chat_id)
@@ -252,6 +190,61 @@ public class EchoBot extends TelegramLongPollingBot {
                 }else if(message_text.startsWith("/iniciahorcado")) {
                 	
                 	message =  (new SendMessage()).setChatId(Long.valueOf(chat_id)).setText(Ahorcado.inicializaAhorcado(chat_id));
+                    try
+                    {
+                        execute(message);
+                    }
+                    catch(TelegramApiException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }else if(message_text.startsWith("/iniciaitem")) {
+                	
+                	message =  (new SendMessage()).setChatId(Long.valueOf(chat_id)).setText(ObtenerItem.inicializaItem(chat_id, message_text));
+                    try
+                    {
+                        execute(message);
+                    }
+                    catch(TelegramApiException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }else if(message_text.startsWith("/obteneritem")) {
+                	
+                	message =  (new SendMessage()).setChatId(Long.valueOf(chat_id)).setText(ObtenerItem.compraItem(chat_id, message_text));
+                	message2 =  (new SendMessage()).setChatId(Long.valueOf(-462274624)).setText("**** AVISO "+ message.getText()+" ****");
+                    try
+                    {
+                        execute(message);
+                        execute(message2);
+                    }
+                    catch(TelegramApiException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    
+                }else if(message_text.startsWith("/veritems")) {
+                	
+                	message =  (new SendMessage()).setChatId(Long.valueOf(chat_id)).setText(ObtenerItem.visualizarItem(chat_id, message_text));
+                    try
+                    {
+                        execute(message);
+                    }
+                    catch(TelegramApiException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }else if(message_text.startsWith("/iniciatodo")) {
+                	String respuesta= " "+
+                	Puntuacion.devolverTodaPuntuacion(chat_id)+"\n "+
+                	CinePic.inicializaCine(chat_id,message_text)+" "+ 
+                	Ahorcado.inicializaAhorcado(chat_id)+" "+
+                	ObtenerItem.inicializaItem(chat_id, message_text)+" "+
+                	ObtenerItem.visualizarItem(chat_id, message_text)+" "
+                	;
+
+                	
+                	message =  (new SendMessage()).setChatId(Long.valueOf(chat_id)).setText(respuesta);
                     try
                     {
                         execute(message);

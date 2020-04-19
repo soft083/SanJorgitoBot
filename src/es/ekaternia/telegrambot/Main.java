@@ -8,7 +8,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
 
 /**
- * @author soft083
+ * @author n220605
  *
  */
 public class Main {

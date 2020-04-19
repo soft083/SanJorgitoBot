@@ -12,6 +12,7 @@ public class Ahorcado {
 	public static String arrayPalabras[] = new String[10];			
 	static String mensajeRespuesta="";
 	public static Integer tamano[] = new Integer[100];
+	//public static Integer aciertos[][]= new Integer[100][100];
 	static char[][] respuesta = new char[100][100];
 	public static String inicializaAhorcado(long chat_id) {
 		
@@ -25,6 +26,7 @@ public class Ahorcado {
 				numeroVidas[civilizacion.getNumeros()][j]=6;
 				palabrasActivas[civilizacion.getNumeros()][j]=true;
 				numeroAciertos[civilizacion.getNumeros()][j]=0;
+				//aciertos[civilizacion.getNumeros()][j]=0;
 			}
 		}
 		  
@@ -108,15 +110,21 @@ public class Ahorcado {
 
 		  //
 		  int contador=0;
+		  
 		  String cadena[] = texto.split("/resuelveahorcado");
 		  String cadenaRespuesta[] = cadena[1].split(":");
 		  Integer NumeroRespuesta = Integer.parseInt(cadenaRespuesta[0].replace(" ", ""));
+		  
 		  String Titulo = cadenaRespuesta[1].replace(" ","");
-		  String palabra = arrayPalabras[numero];
+		  String palabra = arrayPalabras[NumeroRespuesta];
 		  System.out.println("Ti"+Titulo);
 		  System.out.println("pa"+palabra);
 		  System.out.println("NumRe"+NumeroRespuesta);
 		  mensajeRespuesta="\n"+mensajeRespuesta+dibujar(numeroVidas[numero][NumeroRespuesta])+"\n";
+		  
+		  if (palabrasActivas[numero][NumeroRespuesta]) {
+		  
+		  
 		  if (palabra.contains(Titulo)) {
 			  System.out.println("palabracontais");
 			  System.out.println("tamano[NumeroRespuesta]"+tamano[NumeroRespuesta]);
@@ -147,30 +155,21 @@ public class Ahorcado {
 		            //respuesta[numero][i] = 'X';
 		            mensajeRespuesta= mensajeRespuesta+respuesta[numero][i]+"";
 		        }
+		       if (tamano[NumeroRespuesta]==numeroAciertos[numero][NumeroRespuesta]) {
+		          System.out.println("YOU WIN :)");
+		          mensajeRespuesta= sumaPuntos(numero,NumeroRespuesta,1);
+		       }
 		        
+		  }
+		  
+		  }else {
+			  mensajeRespuesta="\nYa la acertaste\n";
 		  }
 		
 		return mensajeRespuesta;
 	}
 	
     
-     /**
-     * Esto desguaza el String en un array de caracteres
-     * @return array de letras.
-     */
-    private static char[] desguazaa(String palAzar){
-        char[] letras;
-        letras = new char[palAzar.length()];
-        for(int i = 0; i < palAzar.length(); i++){
-            letras[i] = palAzar.charAt(i);
-        }
-        return letras;
-    }
-    
-    /**
-     * Esto imprime la palabra con espacios
-     * @param tusRespuestas el array de caracteres
-     */
     private static void imprimeOculta(char[] tusRespuestas){
         
         for(int i = 0; i < tusRespuestas.length; i++){
@@ -178,45 +177,6 @@ public class Ahorcado {
         }
     }
     
-    /**
-     * Esto nos pregunta si queremos volver a jugar y comprueba los caracteres
-     * introducidos
-     * @param men texto para mostrar al usuario
-     * @return caracter de respuesta (s/n)
-     */
-    public static char pregunta(String men, Scanner teclado) {
-        char resp;
-        System.out.println(men + " (s/n)");
-        resp = teclado.next().toLowerCase().charAt(0);
-        while (resp != 's' && resp != 'n') {
-            System.out.println("Error! solo se admite S o N");
-            resp = teclado.next().toLowerCase().charAt(0);
-        }
-        return resp;
-    
-		
-	}
-	public static String aaaaaresuelveAhorcado(long chat_id,String message) {
-		String respuesta= "\n";
-respuesta= respuesta+ (" ---------------------\n");
-respuesta= respuesta+ (" |                     |\n");
-respuesta= respuesta+ (" |                     |\n");
-respuesta= respuesta+ (" |                  -------\n");
-respuesta= respuesta+ (" |                 | X  X  |\n");
-respuesta= respuesta+ (" |                 |   o   |\n");
-respuesta= respuesta+ (" |                  -------\n");
-respuesta= respuesta+ (" |                     |   \n");
-respuesta= respuesta+ (" |                   / | \\ \n");
-respuesta= respuesta+ (" |                  /  |   \\ \n");
-respuesta= respuesta+ (" |                 /   |     \\ \n");
-respuesta= respuesta+ (" |                     |   \n");
-respuesta= respuesta+ (" |                    / \\ \n");
-respuesta= respuesta+ (" |                   /   \\  \n");
-respuesta= respuesta+ (" |                  /     \\ \n");
-		
-		return respuesta;
-	}
-	
 	private static String dibujar(int i) {
 		String msg_respuesta="";
         switch (i) {
@@ -353,5 +313,22 @@ respuesta= respuesta+ (" |                  /     \\ \n");
         }
         return msg_respuesta;
     }
+	
+	  public static String sumaPuntos(Integer numero,Integer numeroRespuesta,Integer puntos) {
+		  //numeroActivo[numero][numeroRespuesta]=false;	
+		  palabrasActivas[numero][numeroRespuesta]=true;
+		  itrCivilizaciones = Puntuacion.civilizaciones.iterator();
+		  while (itrCivilizaciones.hasNext()) {
+				Civilizacion civilizacion =itrCivilizaciones.next();
+				if (civilizacion.getNumeros()==numero) {
+					
+					civilizacion.setPuntos(civilizacion.getPuntos()+puntos);
+					Puntuacion.EscribirFichero();
+				}
+				
+			}
+		  return "Acertaste, has sumado un pioPunto";
+	  }
+	
 	
 }
